@@ -1,5 +1,14 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { FaShoppingCart, FaVideo, FaBook, FaUser, FaClipboardCheck, FaCertificate } from "react-icons/fa";
+import { FaShoppingCart, FaVideo, FaBook, FaUser, FaClipboardCheck, FaCertificate, FaMicrosoft, FaChartLine } from "react-icons/fa";
+import { SiNetapp } from "react-icons/si";
+
+const companies = [
+  { name: "Google", logo: null },
+  { name: "Microsoft", logo: <FaMicrosoft /> },
+  { name: "Eventbrite", logo: null },
+  { name: "Nasdaq", logo: <FaChartLine /> },
+  { name: "NetApp", logo: <SiNetapp /> },
+];
 
 const steps = [
   { icon: <FaShoppingCart />, title: "Purchase a course", description: "Aenean semper malada augue et congue. Fusce consect etur." },
@@ -13,13 +22,16 @@ const steps = [
 export default function CoursePage() {
   return (
     <div className="flex flex-col items-center p-6 w-full">
-      <h2 className="text-xl md:text-2xl font-semibold text-center">Recognised by 100+ companies & institutions</h2>
+      <h2 className="text-xl md:text-2xl font-semibold text-center">
+        Recognised by 100+ companies & institutions
+      </h2>
       <div className="flex flex-wrap justify-center gap-4 md:gap-6 opacity-50 my-4">
-        <span>Google</span>
-        <span>Microsoft</span>
-        <span>Eventbrite</span>
-        <span>Nasdaq</span>
-        <span>NetApp</span>
+        {companies.map((company, index) => (
+          <span key={index} className="flex items-center gap-1 text-sm md:text-base text-gray-500">
+            {company.logo && <span className="text-xs opacity-60">{company.logo}</span>}
+            {company.name}
+          </span>
+        ))}
       </div>
       <div className="bg-purple-100 rounded-lg p-6 w-full max-w-4xl">
         <h3 className="text-lg md:text-xl font-bold text-center">How it works?</h3>
