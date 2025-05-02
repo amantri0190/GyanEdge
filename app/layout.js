@@ -20,13 +20,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}
-        style={{
-          backgroundImage: `url(bg.png)`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          height: "100vh",
-        }}>
+        className={`${geistSans.variable} ${geistMono.variable} antialiased m-0 p-0`}>
         {children}
       </body>
     </html>
