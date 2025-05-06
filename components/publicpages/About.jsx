@@ -6,6 +6,7 @@ const poppins = Poppins({
   weight: ["800"],
   subsets: ["latin"],
 });
+
 const About = () => {
   const [timeLeft, setTimeLeft] = useState(30);
   const radius = 18;
@@ -20,15 +21,19 @@ const About = () => {
   }, [timeLeft]);
 
   const progress = ((30 - timeLeft) / 30) * circumference;
+
   return (
-    <div>
-      <h1 className="text-5xl font-bold text-center">WHY US ?</h1>
-      <div className="flex mt-20 w-full">
-        <div className="w-1/2 flex items-center justify-center p-10">
-          <div className="w-[350px] h-[450px] bg-gray-700 rounded-md p-2 pb-20">
+    <div className="px-4 py-10 max-w-7xl mx-auto">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center">
+        WHY US ?
+      </h1>
+      <div className="flex flex-col lg:flex-row md:mt-20 mt-10 w-full gap-10">
+        {/* Video Card Section */}
+        <div className="w-full lg:w-1/2 flex items-center justify-center">
+          <div className="w-full max-w-sm bg-gray-700 rounded-md p-2 pb-6">
             <div className="rounded-md overflow-hidden">
               <video
-                className="w-full h-[350px] object-cover rounded-md"
+                className="w-full h-[250px] sm:h-[300px] md:h-[350px] object-cover rounded-md"
                 controls
                 autoPlay
                 loop
@@ -38,12 +43,13 @@ const About = () => {
               </video>
               <div className="mt-4 flex items-center justify-between text-white px-2">
                 <div>
-                  <p className="text-2xl font-bold">Aman Tripathi</p>
+                  <p className="text-lg sm:text-xl md:text-2xl font-bold">
+                    XYZ
+                  </p>
                   <p className="text-sm font-light">
                     Co-Founder of GyanEdge | Developer
                   </p>
                 </div>
-
                 <div className="relative w-[50px] h-[50px]">
                   <svg className="w-full h-full transform -rotate-90">
                     <circle
@@ -74,8 +80,10 @@ const About = () => {
             </div>
           </div>
         </div>
+
+        {/* Text Section */}
         <div
-          className={`w-1/2 text-gray-500 mt-28 space-y-10 text-3xl font-bold ${poppins.className}`}>
+          className={`w-full lg:w-1/2 text-gray-700 mt-5 lg:mt-28 space-y-6 text-xl sm:text-2xl md:text-3xl font-bold ${poppins.className}`}>
           <p>Earn While You Learn</p>
           <p>Work on Real-World Projects</p>
           <p>Live Mentorship from MAANG Experts</p>

@@ -3,12 +3,14 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ChevronsLeft, ChevronsRight } from "lucide-react";
 import { Video, Play, Clock, Users } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const courses = [
   {
     title: "Web Development",
     description: "MERN Stack",
     image: "/webdev.jpg",
+    slug: "webdev",
     features: [
       { icon: "video", text: "30 Hr+ Video Lectures" },
       { icon: "live", text: "Live Classes" },
@@ -80,8 +82,7 @@ const courses = [
 export default function Course() {
   const [centerIndex, setCenterIndex] = useState(0);
   const visibleRange = 2;
-
-  // Auto-slide every 5 seconds
+  const router = useRouter();
   useEffect(() => {
     const interval = setInterval(() => {
       shift(1);
@@ -157,20 +158,15 @@ export default function Course() {
             initial={false}
             animate={props.animate}
             style={props.style}>
-            {/* Title + Subtitle */}
             <div className="text-center p-3">
               <h2 className="text-lg font-bold mb-1">{course.title}</h2>
               <p className="text-sm text-gray-600">{course.description}</p>
             </div>
-
-            {/* Image */}
             <img
               src={course.image}
               alt={course.title}
               className="h-36 w-full object-cover"
             />
-
-            {/* Features */}
             <div className="p-3 flex-1 text-left text-sm text-gray-700 space-y-2">
               {course.features.map((item, i) => (
                 <div key={i} className="flex items-center gap-2">
@@ -179,19 +175,19 @@ export default function Course() {
                 </div>
               ))}
             </div>
-
-            {/* Price + Button */}
             <div className="px-4 pb-4 mt-auto flex items-center justify-between">
               <div>
                 <p className="text-md font-bold">₹{course.price}</p>
-                <p className="text-xs text-gray-500 line-through">
-                  ₹{course.originalPrice}{" "}
+                <p className="text-xs text-gray-500">
+                  <span className="line-through">₹{course.originalPrice}</span>
                   <span className="text-green-600">
                     ({course.discount} off)
                   </span>
                 </p>
               </div>
-              <button className="bg-purple-300 text-white px-3 py-1 rounded hover:bg-purple-400 text-sm cursor-pointer">
+              <button
+                onClick={() => router.push(`/courses/${course.slug}`)}
+                className="bg-purple-300 text-white px-3 py-1 rounded hover:bg-purple-400 text-sm cursor-pointer">
                 BUY
               </button>
             </div>

@@ -7,7 +7,7 @@ const poppins = Poppins({
   subsets: ["latin"],
 });
 
-const Page1 = () => {
+const Hero = ({ onScrollClick }) => {
   return (
     <div
       className="relative bg-cover bg-center min-h-screen"
@@ -30,8 +30,9 @@ const Page1 = () => {
           </div>
           <div className="mt-8 sm:mt-12">
             <Button
+              onClick={onScrollClick}
               size="lg"
-              className="h-14 sm:h-16 md:h-14 lg:h-20 px-6 md:px-4 lg:px-8 sm:px-8 rounded-full font-medium text-base lg:text-lg md:text-sm sm:text-lg bg-white text-black hover:bg-white shadow-2xl cursor-pointer">
+              className="h-14 sm:h-16 md:h-14 lg:h-20 px-6 md:px-4 lg:px-8 sm:px-8 rounded-full font-medium text-base lg:text-lg md:text-sm sm:text-lg bg-white text-black hover:bg-gray-100 shadow-2xl cursor-pointer">
               Explore Courses
             </Button>
           </div>
@@ -62,4 +63,4 @@ const Page1 = () => {
   );
 };
 
-export default Page1;
+export default Hero;
