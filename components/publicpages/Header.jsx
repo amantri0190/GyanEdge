@@ -1,31 +1,30 @@
 "use client";
 import React, { useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const router = useRouter();
   return (
     <div>
       <nav className="fixed w-full lg:px-24 top-0 z-120 p-3 backdrop-blur-lg bg-black/20">
         <div className="flex items-center justify-between px-4 my-2">
           {/* Logo */}
-          <div className="font-bold text-xl text-white flex items-center gap-2">
+          <div className="font-bold text-2xl text-white flex items-center gap-2">
             GyanEdge
           </div>
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-4 lg:space-x-10 text-sm font-medium text-white">
-            <span>Home</span>
-            <span className="flex items-center">
-              Courses <ChevronDown className="size-4 ml-1" />
-            </span>
-            <span className="flex items-center">
-              Resources <ChevronDown className="size-4 ml-1" />
-            </span>
+          <div className="hidden md:flex items-center space-x-4 lg:space-x-10 xl:text-base text-sm font-medium text-white ml-4 cursor-pointer">
+            <Link href="/">Home</Link>
+            <span className="flex items-center">Courses</span>
             <span>About</span>
+            <span>Contact Us</span>
           </div>
           {/* Buttons */}
           <div className="hidden md:flex gap-3">
-            <div className="bg-white text-purple-800 rounded-full p-2 px-4 font-medium cursor-pointer text-sm">
+            <div className="bg-white text-purple-800 rounded-full p-2 px-4 font-medium cursor-pointer text-sm flex items-center justify-center">
               Create Account
             </div>
             <div className="rounded-full text-white border-white border-2 p-2 px-4 font-medium cursor-pointer text-sm">

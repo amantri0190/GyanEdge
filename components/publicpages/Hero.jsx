@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Poppins } from "next/font/google";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 
 const poppins = Poppins({
   weight: ["800"],
   subsets: ["latin"],
 });
-
+const words = [
+  { text: "GYAN", color: "text-yellow-300" },
+  { text: "UNIQUENESS", color: "text-rose-300" },
+  { text: "EXPERTISE", color: "text-sky-300" },
+];
 const Hero = ({ onScrollClick }) => {
+  const [index, setIndex] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % words.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
   return (
     <div
       className="relative bg-cover bg-center min-h-screen"
@@ -18,7 +30,24 @@ const Hero = ({ onScrollClick }) => {
           <div>
             <p
               className={`text-4xl sm:text-5xl md:text-3xl lg:text-5xl text-white ${poppins.className}`}>
-              GROW WITH GYAN
+              <span>GROW WITH GYAN</span>
+              {/* <span className="relative ml-2 w-[140px] h-10 overflow-hidden">
+                {words.map((word, i) => (
+                  <span
+                    key={i}
+                    className={`
+              absolute left-0 w-full text-center transition-all duration-700 ease-in-out
+              ${
+                i === index
+                  ? "translate-y-0 blur-0 opacity-100 z-10"
+                  : "translate-y-10 blur-sm opacity-0 z-0"
+              }
+              ${word.color}
+            `}>
+                    {word.text}
+                  </span>
+                ))}
+              </span> */}
             </p>
             <p className="text-2xl sm:text-4xl md:text-2xl lg:text-4xl text-white font-semibold mt-4">
               STAND OUT WITH EDGE
@@ -32,7 +61,7 @@ const Hero = ({ onScrollClick }) => {
             <Button
               onClick={onScrollClick}
               size="lg"
-              className="h-14 sm:h-16 md:h-14 lg:h-20 px-6 md:px-4 lg:px-8 sm:px-8 rounded-full font-medium text-base lg:text-lg md:text-sm sm:text-lg bg-white text-black hover:bg-gray-100 shadow-2xl cursor-pointer">
+              className="h-14 sm:h-16 md:h-14 lg:h-20 px-6 md:px-4 lg:px-8 sm:px-8 rounded-full font-medium text-base lg:text-lg md:text-sm sm:text-lg bg-white text-black hover:bg-gray-100 shadow-2xl cursor-pointer hover:scale-95 hover:transition-all ease-in-out">
               Explore Courses
             </Button>
           </div>

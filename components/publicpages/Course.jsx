@@ -140,8 +140,10 @@ export default function Course() {
     }
   };
   return (
-    <div className="relative w-full flex items-center justify-center h-[700px] overflow-hidden">
-      <h1 className="absolute top-0 text-5xl font-bold">Popular Courses</h1>
+    <div className="relative w-full flex items-center justify-center h-[700px] overflow-hidden bg-gradient-to-b from-white via-purple-50 to-white">
+      <h1 className="absolute top-0 text-5xl font-bold">
+        Popular Courses
+      </h1>
       <p className="top-20 absolute text-center text-xl max-w-4xl font-normal text-gray-500">
         "Courses are not just a path to knowledge; they are the bridges that
         connect curiosity to expertise, guiding you step by step towards
@@ -154,7 +156,7 @@ export default function Course() {
         return (
           <motion.div
             key={index}
-            className="w-[260px] min-h-[430px] bg-white rounded-xl shadow-xl overflow-hidden flex flex-col absolute border mt-24"
+            className="w-[260px] min-h-[430px] bg-white rounded-xl shadow-xl overflow-hidden flex flex-col absolute border border-gray-200 mt-24"
             initial={false}
             animate={props.animate}
             style={props.style}>

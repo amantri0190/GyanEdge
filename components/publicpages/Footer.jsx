@@ -31,7 +31,7 @@ const FooterPage = () => {
             Got a Question, Idea, or just want to say Hi?
           </p>
 
-          <div className="flex items-center flex-grow pl-5 pr-2 border rounded-4xl focus-within:ring-1 focus-within:ring-purple-700 bg-white mt-6">
+          <div className="flex items-center flex-grow pl-5 pr-2 rounded-4xl focus-within:ring-1 focus-within:ring-purple-700 bg-white mt-6">
             <input
               type="text"
               id="awb-input"
@@ -65,6 +65,7 @@ const FooterPage = () => {
           <div className="text-white space-y-2 mt-5 sm:mt-10">
             <p>Home</p>
             <p>Courses</p>
+            <p>Career</p>
             <p>Resources</p>
             <p>About</p>
           </div>

@@ -33,7 +33,7 @@ const About = () => {
           <div className="w-full max-w-sm bg-gray-700 rounded-md p-2 pb-6">
             <div className="rounded-md overflow-hidden">
               <video
-                className="w-full h-[250px] sm:h-[300px] md:h-[350px] object-cover rounded-md"
+                className="w-full h-[250px] sm:h-[300px] md:h-[400px] object-cover rounded-md"
                 controls
                 autoPlay
                 loop
@@ -44,7 +44,7 @@ const About = () => {
               <div className="mt-4 flex items-center justify-between text-white px-2">
                 <div>
                   <p className="text-lg sm:text-xl md:text-2xl font-bold">
-                    XYZ
+                    Aman Tripathi
                   </p>
                   <p className="text-sm font-light">
                     Co-Founder of GyanEdge | Developer

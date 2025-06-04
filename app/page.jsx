@@ -5,6 +5,7 @@ import Footer from "../components/publicpages/Footer";
 import Hero from "../components/publicpages/Hero";
 import Course from "../components/publicpages/Course";
 import About from "../components/publicpages/About";
+import Collaboration from "@/components/publicpages/Collaboration";
 
 export default function Home() {
   const courseRef = useRef(null);
@@ -14,11 +15,12 @@ export default function Home() {
   };
   return (
     <div>
-      {/* <Header /> */}
+      <Header />
       <Hero onScrollClick={scrollToCourse} />
       <div ref={courseRef}>
         <Course />
       </div>
+      <Collaboration/>
       <About />
       <Footer />
     </div>
