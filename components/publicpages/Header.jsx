@@ -27,9 +27,11 @@ const Header = () => {
             <div className="bg-white text-purple-800 rounded-full p-2 px-4 font-medium cursor-pointer text-sm flex items-center justify-center">
               Create Account
             </div>
-            <div className="rounded-full text-white border-white border-2 p-2 px-4 font-medium cursor-pointer text-sm">
+            <Link
+              href="/login"
+              className="rounded-full text-white border-white border-2 p-2 px-4 font-medium cursor-pointer text-sm transform transition-transform duration-200 hover:scale-105">
               Log In
-            </div>
+            </Link>
           </div>
           {/* Mobile Menu Icon */}
           <div className="md:hidden">
