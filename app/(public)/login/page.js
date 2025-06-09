@@ -17,6 +17,9 @@ import LoadingButton from "@/components/elements/LoadingButton";
 import { z } from "zod";
 import { Poppins } from "next/font/google";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
 import { parse } from "../../../node_modules/zod/dist/esm/v4/classic/parse";
 
 const loginFormSchema = z.object({
@@ -30,6 +33,7 @@ const poppins = Poppins({
   subsets: ["latin"],
 });
 const Page = () => {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
   const form = useForm({
@@ -41,16 +45,47 @@ const Page = () => {
   });
 
   async function onSubmit(values) {
-    console.log(values);
+    setIsLogin(true);
+    try {
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+
+      const data = await res.json();
+      if (res.status === 200 && data.result) {
+        if (data.role === "admin") {
+          router.push("/dashboard/admin");
+        } else if (data.role === "student") {
+          router.push("/dashboard/student");
+        } else {
+          alert("Unknown role. Contact support.");
+        }
+      } else {
+        alert(data.message || "Login Failed");
+      }
+    } catch (error) {
+      alert("Something went wrong. Please try again.");
+      console.error("Login error:", error);
+    } finally {
+      setIsLogin(false);
+    }
   }
 
   return (
     <div className="flex">
-      <div className="w-1/2 hidden lg:block bg-purple-50">
-        This div is for image
+      <div className="w-1/2 hidden lg:block">
+        <Image
+          src="/loginimage.jpg"
+          alt="Image 1"
+          width={900}
+          height={900}
+          className="object-fill h-[778px]"
+        />
       </div>
-      <div className="lg:w-1/2 w-full h-screen flex flex-col items-center justify-center p-4">
-        <Card className="w-full max-w-md border-0 shadow-2xl p-0">
+      <div className="lg:w-1/2 w-full h-screen flex flex-col items-center justify-center p-4 bg-blue-100">
+        <Card className="w-full max-w-md border-gray-100 shadow-xl p-0 bg-white">
           <CardContent className="pt-10">
             <p
               className={`mb-12 text-3xl text-center font-bold ${poppins.className}`}>
@@ -115,13 +150,11 @@ const Page = () => {
                   />
                 </div>
                 <div className="mb-10 mt-2 flex justify-between">
-                  <div className="text-sm flex items-center gap-2">
-                    <Checkbox />
-                    Remember me
-                  </div>
-                  <div className="hover:underline text-sm text-gray-400">
+                  <Link
+                    href="/forgotpassword"
+                    className="hover:underline cursor-pointer text-sm text-gray-400">
                     Forgot Password?
-                  </div>
+                  </Link>
                 </div>
                 <LoadingButton
                   isLoading={isLogin}
