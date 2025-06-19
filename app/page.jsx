@@ -20,7 +20,9 @@ export default function Home() {
       <div ref={courseRef}>
         <Course />
       </div>
-      <Collaboration/>
+      <div className="mt-20">
+        <Collaboration />
+      </div>
       <About />
       <Footer />
     </div>

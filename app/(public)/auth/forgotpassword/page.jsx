@@ -60,27 +60,16 @@ const Page = () => {
   }
 
   return (
-    <div className="flex">
-      <div className="w-1/2 hidden lg:block">
-        <Image
-          src="/loginimage.jpg"
-          alt="Image 1"
-          width={900}
-          height={900}
-          className="object-fill h-[778px]"
+    <div>
+      {linkSent ? (
+        <SuccessCard />
+      ) : (
+        <ForgotPasswordForm
+          form={forgotPasswordForm}
+          onSubmit={onSubmit}
+          isLogin={isLogin}
         />
-      </div>
-      <div className="lg:w-1/2 w-full h-screen flex flex-col items-center justify-center p-4 bg-blue-100">
-        {linkSent ? (
-          <SuccessCard />
-        ) : (
-          <ForgotPasswordForm
-            form={forgotPasswordForm}
-            onSubmit={onSubmit}
-            isLogin={isLogin}
-          />
-        )}
-      </div>
+      )}
     </div>
   );
 };
@@ -117,7 +106,7 @@ const SuccessCard = () => (
 );
 
 const ForgotPasswordForm = ({ form, onSubmit, isLogin }) => (
-  <Card className="w-full max-w-md border-gray-100 shadow-xl p-0 bg-white">
+  <Card className="w-[500] border-gray-100 shadow-xl p-0 bg-white">
     <CardContent className="pt-10">
       <p
         className={`mb-12 text-3xl text-center font-bold ${poppins.className}`}>
@@ -131,7 +120,7 @@ const ForgotPasswordForm = ({ form, onSubmit, isLogin }) => (
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="text-sm">
-                  Email <span className="text-red">*</span>
+                  Email <span className="text-red-500">*</span>
                 </FormLabel>
                 <FormControl>
                   <Input
@@ -140,13 +129,13 @@ const ForgotPasswordForm = ({ form, onSubmit, isLogin }) => (
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-red-500 text-xs font-semibold" />
               </FormItem>
             )}
           />
           <div className="mb-10 mt-2 flex justify-between">
             <Link
-              href="/login"
+              href="/auth/login"
               className="hover:underline cursor-pointer text-sm text-gray-400">
               Return Login?
             </Link>
@@ -155,7 +144,7 @@ const ForgotPasswordForm = ({ form, onSubmit, isLogin }) => (
             isLoading={isLogin}
             label="Submit"
             loadingLabel="Submit"
-            className="bg-blue w-full text-lg bg-black text-white"
+            className="bg-blue cursor-pointer w-full text-lg bg-purple-950 hover:bg-purple-900 text-white"
           />
           <div className="flex items-center justify-center text-xs mt-2 gap-1 mb-20">
             <span className="text-gray-800 font-normal">New User?</span>

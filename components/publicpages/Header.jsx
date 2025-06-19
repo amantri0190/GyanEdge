@@ -1,15 +1,45 @@
 "use client";
-import React, { useState } from "react";
+
+import React, { useState, useEffect, useRef } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import clsx from "clsx";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showHeader, setShowHeader] = useState(true);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
+        setShowHeader(false);
+      } else {
+        setShowHeader(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const router = useRouter();
+
   return (
     <div>
-      <nav className="fixed w-full lg:px-24 top-0 z-120 p-3 backdrop-blur-lg bg-black/20">
+      <nav
+        className={clsx(
+          "fixed w-full lg:px-24 top-0 z-120 p-1 backdrop-blur-lg bg-black/20 transition-transform duration-300",
+          {
+            "-translate-y-full": !showHeader,
+            "translate-y-0": showHeader,
+          }
+        )}>
         <div className="flex items-center justify-between px-4 my-2">
           {/* Logo */}
           <div className="font-bold text-2xl text-white flex items-center gap-2">
@@ -28,7 +58,7 @@ const Header = () => {
               Create Account
             </div>
             <Link
-              href="/login"
+              href="/auth/login"
               className="rounded-full text-white border-white border-2 p-2 px-4 font-medium cursor-pointer text-sm transform transition-transform duration-200 hover:scale-105">
               Log In
             </Link>
@@ -50,8 +80,9 @@ const Header = () => {
             )}
           </div>
         </div>
-        {/* Mobile Menu */}
       </nav>
+
+      {/* Mobile Menu */}
       {menuOpen && (
         <div className="md:hidden fixed backdrop-blur-lg bg-black/20 px-6 py-4 text-white space-y-4 text-sm font-medium z-50 left-1/2 -translate-x-1/2 w-full top-13">
           <div>Home</div>

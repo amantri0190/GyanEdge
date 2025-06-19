@@ -10,7 +10,7 @@ const page = () => {
     });
     if (res.ok) {
       alert("Logged out!");
-      window.location.href="/login";
+      window.location.href="/auth/login";
     }
   }
   return (

@@ -38,7 +38,7 @@ export async function POST(req) {
       response.cookies.set("token", token, {
         httpOnly: true,
         path: "/",
-        maxAge: 5, // expiring time for the token
+        maxAge: "1h",
       });
       return response;
     } else {
